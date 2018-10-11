@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error</title>
+</head>
+<body>
+Your Worker ID is incerrect
+
+<form method="POST" action="{% url 'input_worker_id'  %}">
+  {% csrf_token %}
+  <input id="submitButton" type="submit" name="Submit" value="Back">
+</form>
+</body>
+</html>
