@@ -1,2 +1,2 @@
 # アノテーションツール
-`polls utils`は抜いているので動きません。
+`polls/utils`と`db.splite3`は抜いているので動きません。
