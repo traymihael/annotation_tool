@@ -38,3 +38,16 @@ def submit_data(request):
 
     return render(request, annotation_name, context)
 
+def guideline(request):
+    context = {}
+    annotation_name = 'guideline.html'
+
+    return render(request, annotation_name, context)
+
+def ful_text(request):
+    context = {}
+    annotation_name = 'ful_text.html'
+
+    return render(request, annotation_name, context)
+
+

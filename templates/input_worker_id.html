@@ -1,33 +1,80 @@
-
 {% load static %}
-<!--<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  </head>
 
-<div class="login-body">
-  <article class="container-login center-block">
-    <section>
-      <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
-        <div id="login-access" class="tab-pane fade active in">
-          <h2><i class="glyphicon glyphicon-log-in"></i> Start Annotation</h2>
-          <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'annotation_start'  %}" onSubmit='return check_name();'>
-            {% csrf_token %}
-            <div class="form-group ">
-              <label for="login" class="sr-only">Email</label>
-              <input type="text" class="form-control" name="worker_id" id="login_value" placeholder="Worker ID" />
+  <body style="background:white">
+    <h2 style="text-align: center;">
+      Notes
+    </h2><br>
+
+    <p><b><font size="4">Introduction:</font></b></p>
+    We are conducting an academic survey about lexical simplification.<br>
+    We ask you to check if the candidate words can replace the target word and if the replacement works for educational purpose (replacing a difficult word with an easier and/or simpler word).
+    <br><br><br>
+
+    <p><b><font size="4">Guideline:</font></b></p>
+      We assume that the procedure of checking paraphrasability consists of three stages: grammatical reformation stage, definition stage, and context stage.<p></p>
+
+      Grammatical reformation is defined as addition or removal of words to maintain the coherence of the sentence.<br>
+      Candidates that fail at this stage will be unable to complete the sentence without need for the sentence to be reformed, regardless of their semantic proximity to the target word.<br>
+      <u>Note that the morphology of the target (third person singular, past tense etc.) is considered to be applied to the candidate automatically in the process of paraphrasing.</u> <p></p>
+
+    <p>The following cases serve as an example:</p>
+    <p>(1) Chemical engineering, materials science, and nanotechnology combine chemical principles and empirical findings to produce useful substances, <font color="blue">ranging</font> from gasoline to fabrics to electronic.</p>
+    <p>Target: <font color="blue">range</font><br>
+      Candidate: cover
+    </p>
+    In this sentence, the verb "range" is the target to be paraphrased.
+    <p>The candidate "cover" does not fit due to the need to remove the preposition "from" to make the sentence grammatically correct.</p>
+
+    <p>(2) This civic engagement ensures that representative democracy will continue to flourish and that people will continue to <font color="blue">influence</font> government.</p>
+    <p>Target: <font color="blue">influence</font><br>
+       Candidates: determine, impress, change
+    </p>
+    In (2), where the target is the verb "influence", "determine" passes the grammatical reformation stage but fails at the definition stage because it does not cover the semantics of "influence" in the meaning of affecting the way someone thinks or behaves, though it might do so in another context where determination causes a change in someone`s way of thinking.
+    On the other hand, the word "impress" passes this stage because it can be used to mean to affect the way someone believes.
+    However, it does not pass the context stage because "impressing government" is not synonymous to "influencing government" in this context.
+    <br><br><br>
+
+    <p><b><font size="4">Comment:</font></b></p>
+    If you have any comments or suggestions, please fill in the input box after the radio button (e.g. "This word is too informal in this context.", "'Influential" instead of "influence" would be fine.").
+    <br><br><br>
+
+    <p><b><font size="4" color="#dc143c">Attention:</font></b></p>
+    We intentionally included some options that are obviously true (or false) to ensure the quality of the survey. Those who get these items wrong would not be accepted. Also, please note that participants whose answers are mechanical will be rejected.
+
+    <div class="login-body">
+      <article class="container-login center-block">
+        <section>
+          <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+            <div id="login-access" class="tab-pane fade active in">
+              <h2><i class="glyphicon glyphicon-log-in"></i> Start Annotation</h2>
+              <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'annotation_start'  %}" onSubmit='return check_name();'>
+                {% csrf_token %}
+                <div class="form-group ">
+                  <label for="login" class="sr-only">Email</label>
+                  <input type="text" class="form-control" name="worker_id" id="login_value" placeholder="Worker ID" />
+                </div>
+                <br/>
+                <div class="form-group ">
+                  <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Start">
+                </div>
+              </form>
             </div>
-            <br/>
-            <div class="form-group ">
-              <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Start">
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </article>
+          </div>
+        </section>
+      </article>
 
-</div>
+    </div>
+  </body>
+</html>
+
 

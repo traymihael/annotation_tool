@@ -1,200 +1,180 @@
+{% extends 'base.html' %}
+{% block title %}annotation {%endblock%}
 
-<html>
-  <script type="text/javascript">
-    function gup( name ){
-      var regexS = "[\?&]"+name+"=([^&#]*)";
-      var regex = new RegExp( regexS );
-      var tmpURL = window.location.href;
-      var results = regex.exec( tmpURL );
-      if( results == null )
-      return "";
-      else
-      return results[1];
-    }
-  </script>
+{% block content %}
 
-  <body>
-
-    <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'submit_data'  %}" onSubmit='return formValidator();'>
-      {% csrf_token %}
-
-      <input type="hidden" name="dir_name" value="test" />
-      <input type="hidden" name="file_num" value="0" />
-      <input type="hidden" name="worker_id" value={{ worker_id }} />
-
-      <h2 style="text-align: center;">
-        アノテーションフォーム(economics)
-      </h2><br>
-
-      <p>Your Worker ID is <b>{{ worker_id }}</b></p>
-
-      <p><b>Introduction:</b></p>
-        We are conducting an academic survey about lexical simplification.
-        We ask you to check if the candidate words can replace the target word and if the replacement works for educational purpose (replacing a difficult word with an easier and/or simpler word).
-
-      <p><b>Guideline:</b></p>
-        We assume that the procedure of checking paraphrasability consists of three stages: grammatical reformation stage, definition stage, and context stage.<p></p>
-
-        Grammatical reformation is defined as addition or removal of words to maintain the coherence of the sentence.
-        Candidates that fail at this stage will be unable to complete the sentence without need for the sentence to be reformed, regardless of their semantic proximity to the target word.
-        <u>Note that the morphology of the target (third person singular, past tense etc.) is considered to be applied to the candidate automatically in the process of paraphrasing.</u> <p></p>
-
-      <p>The following cases serve as an example:</p>
-      <p>(1) Chemical engineering, materials science, and nanotechnology combine chemical principles and empirical findings to produce useful substances, <font color="blue">ranging</font> from gasoline to fabrics to electronic.</p>
-      <p>Target: <font color="blue">range</font><br>
-        Candidate: cover
-      </p>
-        In this sentence, the verb "range" is the target to be paraphrased.
-        The candidate "cover" does not fit due to the need to remove the preposition "from" to make the sentence grammatically correct.
-
-      <p>(2) This civic engagement ensures that representative democracy will continue to flourish and that people will continue to <font color="blue">influence</font> government.</p>
-      <p>Target: <font color="blue">influence</font><br>
-         Candidates: determine, impress, change
-      </p>
-        In (2), where the target is the verb "influence", "determine" passes the grammatical reformation stage but fails at the definition stage because it does not cover the semantics of "influence" in the meaning of affecting the way someone thinks or behaves, though it might do so in another context where determination causes a change in someone`s way of thinking.
-        On the other hand, the word "impress" passes this stage because it can be used to mean to affect the way someone believes. However, it does not pass the context stage because "impressing government" is not synonymous to "influencing government" in this context. Finally, the candidate "change" passes all the stages because it is grammatically appropriate, semantically proximate and contextually synonymous to the target word.
-
-      <p><b>Text:</b></p>
-      <p style="text-align: center;">Text is<a href="http://tinyurl.com/is-it-lit" target="_blank">here</a></p>
-
-        Economics is the study of how humans make decisions in the face of <font color="red">scarcity</font>.
-        These can be individual decisions , family decisions , business decisions or societal decisions .
-        If you look around carefully, you will see that scarcity is a fact of life.
-        Scarcity means that human wants for goods, services and resources exceed what is available.
-        Resources, such as labor, tools , land , and raw materials are necessary to produce the goods and services we want but they exist in limited supply . Of course , the ultimate scarce resource is time‒ everyone , rich or poor , has just 24 hours in the day to try to acquire the goods they want .
-        At any point in time , there is only a finite amount of resources available . Think about it this way : In 2015 the labor force in the United States contained over 158.6 million workers , according to the U.S. Bureau of Labor Statistics .
-        Similarly , the total area of the United States is 3,794,101 square miles .
-        These are large numbers for such crucial resources , however , they are limited .
-        Because these resources are limited , so are the numbers of goods and services we produce with them .
-        Combine this with the fact that human wants seem to be virtually infinite , and you can see why scarcity is a problem .
-        If you still do not believe that scarcity is a problem , consider the following : Does everyone need food to eat ? Does everyone need a decent place to live ? Does everyone have access to healthcare ?
-
-      <!--<p><b>your worker ID</b></p>-->
-      <!--<p><textarea rows="1" cols="10" name="comment"></textarea></p>-->
-
-      <p><b>Target sentence</b></p>
-      (1) Economics is the study of how humans make decisions in the face of <font color="red">scarcity</font>.<br><br>
-      <input type="hidden" name="text" value="Economics is the study of how humans make decisions in the face of scarcity." />
-      <input type="hidden" name="target_index" value="13" />
-
-      <p><b>Target word</b></p>
-        (1) <font color="red">scarcity</font>
-      <input type="hidden" name="target" value="scarcity" />
-
-      <p><b>Candidates</b></p>
-      <input type="hidden" name="candidate_len" value="4" />
-      Please check all the words that can be used instead of the target word in the same context. Note that the morphology of the target (third person singular, past tense etc.) is considered to be applied to the candidate automatically in the process of paraphrasing.<p></p>
-
-      1.lack
-      <input type="hidden" name="candidate_word0" value="lack" />
-      <div id="phraseClass" style="margin-left: 3em;">
-        <table width="300" height="20" cellpadding="10">
-          <tbody><tr>
-            <td valign="middle"><input type="radio" name="annotation_result0" value="2" />sure</td>
-            <td valign="middle"><input type="radio" name="annotation_result0" value="1" />maybe</td>
-            <td valign="middle"><input type="radio" name="annotation_result0" value="0" />NG</td>
-          </tr></tbody>
-        </table>
-      </div>
-      <textarea rows="1" cols="80" name="comment0"></textarea><br><br>
-
-      2.shortage
-      <input type="hidden" name="candidate_word1" value="shortage" />
-      <div id="phraseClass" style="margin-left: 3em;">
-        <table width="300" height="20" cellpadding="10">
-          <tbody><tr>
-            <td valign="middle"><input type="radio" name="annotation_result1" value="2" />sure</td>
-            <td valign="middle"><input type="radio" name="annotation_result1" value="1" />maybe</td>
-            <td valign="middle"><input type="radio" name="annotation_result1" value="0" />NG</td>
-          </tr></tbody>
-        </table>
-      </div>
-      <textarea rows="1" cols="80" name="comment1"></textarea><br><br>
-
-      3.rareness
-      <input type="hidden" name="candidate_word2" value="rareness" />
-      <div id="phraseClass" style="margin-left: 3em;">
-        <table width="300" height="20" cellpadding="10">
-          <tbody><tr>
-            <td valign="middle"><input type="radio" name="annotation_result2" value="2" />sure</td>
-            <td valign="middle"><input type="radio" name="annotation_result2" value="1" />maybe</td>
-            <td valign="middle"><input type="radio" name="annotation_result2" value="0" />NG</td>
-          </tr></tbody>
-        </table>
-      </div>
-      <textarea rows="1" cols="80" name="comment2"></textarea><br><br>
-
-      4.deficiency
-      <input type="hidden" name="candidate_word3" value="deficiency" />
-      <div id="phraseClass" style="margin-left: 3em;">
-        <table width="300" height="20" cellpadding="10">
-          <tbody><tr>
-            <td valign="middle"><input type="radio" name="annotation_result3" value="2" />sure</td>
-            <td valign="middle"><input type="radio" name="annotation_result3" value="1" />maybe</td>
-            <td valign="middle"><input type="radio" name="annotation_result3" value="0" />NG</td>
-          </tr></tbody>
-        </table>
-      </div>
-      <textarea rows="1" cols="80" name="comment3"></textarea><br><br>
-
-
-
-
-      <input id="submitButton" type="submit" name="Submit" value="Next">
-    </form>
-    <!--<iframe id="pageFrame" width="0%" height="0%"></iframe>-->
-
+  <html>
     <script type="text/javascript">
-      //    alert(window.location.href);
-      document.getElementById('assignmentId').value = gup('assignmentId');
-      //alert(document.getElementById('assignmentId').value);
-
-      //
-      // Check if the worker is PREVIEWING the HIT or if they've ACCEPTED the HIT
-      //
-      if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE"){
-        // If we're previewing, disable the button and give it a helpful message
-        document.getElementById('submitButton').disabled = true;
-        document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
-      }
-      else {
-        var form = document.getElementById('mturk_form');
-        if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)){
-          form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
-        }
+      function gup( name ){
+        var regexS = "[\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var tmpURL = window.location.href;
+        var results = regex.exec( tmpURL );
+        if( results == null )
+        return "";
+        else
+        return results[1];
       }
     </script>
-  </body>
 
-  <script type="text/javascript">
-    function formValidator(){
-      var valid = true;
-        if ((document.mturk_form.annotation_result0[0].checked == false) && (document.mturk_form.annotation_result0[1].checked == false) &&
-        (document.mturk_form.annotation_result0[2].checked == false )){
-          alert ( "Please annotate No.1" );
-          valid = false;
-          return valid;
-        }
-        if ((document.mturk_form.annotation_result1[0].checked == false ) && (document.mturk_form.annotation_result1[1].checked == false) &&
-        (document.mturk_form.annotation_result1[2].checked == false )){
-          alert ( "Please annotate No.2" );
-          valid = false;
-          return valid;
-        }
-        if ((document.mturk_form.annotation_result2[0].checked == false ) && (document.mturk_form.annotation_result2[1].checked == false) &&
-        (document.mturk_form.annotation_result2[2].checked == false )){
-          alert ( "Please annotate No.3" );
-          valid = false;
-          return valid;
-        }
-        if ((document.mturk_form.annotation_result3[0].checked == false) && (document.mturk_form.annotation_result3[1].checked == false) &&
-        (document.mturk_form.annotation_result3[2].checked == false)){
-          alert ( "Please annotate No.4" );
-          valid = false;
-          return valid;
-        }
-      return valid;
-    }
-  </script>
+    <body style="background:white">
 
-</html>
+      <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'submit_data'  %}" onSubmit='return formValidator();'>
+        {% csrf_token %}
+
+        <input type="hidden" name="dir_name" value="test" />
+        <input type="hidden" name="file_num" value="0" />
+        <input type="hidden" name="worker_id" value={{ worker_id }} />
+
+        <p>Your Worker ID is <b>{{ worker_id }}</b></p>
+
+        <p><b>Text:</b>   (Full text is
+          <a href="{% url 'ful_text' %}" data-lity>
+            <label for="label1">here</label>
+          </a>
+          )
+        </p>
+
+          Economics is the study of how humans make decisions in the face of <font color="red">scarcity</font>.
+          These can be individual decisions , family decisions , business decisions or societal decisions .
+          If you look around carefully, you will see that scarcity is a fact of life.
+          Scarcity means that human wants for goods, services and resources exceed what is available.
+          Resources, such as labor, tools , land , and raw materials are necessary to produce the goods and services we want but they exist in limited supply . Of course , the ultimate scarce resource is time‒ everyone , rich or poor , has just 24 hours in the day to try to acquire the goods they want .
+          At any point in time , there is only a finite amount of resources available . Think about it this way : In 2015 the labor force in the United States contained over 158.6 million workers , according to the U.S. Bureau of Labor Statistics .
+          Similarly , the total area of the United States is 3,794,101 square miles .
+          These are large numbers for such crucial resources , however , they are limited .
+          Because these resources are limited , so are the numbers of goods and services we produce with them .
+          Combine this with the fact that human wants seem to be virtually infinite , and you can see why scarcity is a problem .
+          If you still do not believe that scarcity is a problem , consider the following : Does everyone need food to eat ? Does everyone need a decent place to live ? Does everyone have access to healthcare ?
+
+        <!--<p><b>your worker ID</b></p>-->
+        <!--<p><textarea rows="1" cols="10" name="comment"></textarea></p>-->
+
+        <p><b>Target sentence</b></p>
+        (1) Economics is the study of how humans make decisions in the face of <font color="red">scarcity</font>.<br><br>
+        <input type="hidden" name="text" value="Economics is the study of how humans make decisions in the face of scarcity." />
+        <input type="hidden" name="target_index" value="13" />
+
+        <p><b>Target word</b></p>
+          (1) <font color="red">scarcity</font>
+        <input type="hidden" name="target" value="scarcity" />
+
+        <p><b>Candidates</b></p>
+        <input type="hidden" name="candidate_len" value="4" />
+        Please check all the words that can be used instead of the target word in the same context. Note that the morphology of the target (third person singular, past tense etc.) is considered to be applied to the candidate automatically in the process of paraphrasing.<p></p>
+
+        1.lack
+        <input type="hidden" name="candidate_word0" value="lack" />
+        <div id="phraseClass" style="margin-left: 3em;">
+          <table width="300" height="20" cellpadding="10">
+            <tbody><tr>
+              <td valign="middle"><input type="radio" name="annotation_result0" value="2" />sure</td>
+              <td valign="middle"><input type="radio" name="annotation_result0" value="1" />maybe</td>
+              <td valign="middle"><input type="radio" name="annotation_result0" value="0" />NG</td>
+            </tr></tbody>
+          </table>
+        </div>
+        <textarea rows="1" cols="80" name="comment0"></textarea><br><br>
+
+        2.shortage
+        <input type="hidden" name="candidate_word1" value="shortage" />
+        <div id="phraseClass" style="margin-left: 3em;">
+          <table width="300" height="20" cellpadding="10">
+            <tbody><tr>
+              <td valign="middle"><input type="radio" name="annotation_result1" value="2" />sure</td>
+              <td valign="middle"><input type="radio" name="annotation_result1" value="1" />maybe</td>
+              <td valign="middle"><input type="radio" name="annotation_result1" value="0" />NG</td>
+            </tr></tbody>
+          </table>
+        </div>
+        <textarea rows="1" cols="80" name="comment1"></textarea><br><br>
+
+        3.rareness
+        <input type="hidden" name="candidate_word2" value="rareness" />
+        <div id="phraseClass" style="margin-left: 3em;">
+          <table width="300" height="20" cellpadding="10">
+            <tbody><tr>
+              <td valign="middle"><input type="radio" name="annotation_result2" value="2" />sure</td>
+              <td valign="middle"><input type="radio" name="annotation_result2" value="1" />maybe</td>
+              <td valign="middle"><input type="radio" name="annotation_result2" value="0" />NG</td>
+            </tr></tbody>
+          </table>
+        </div>
+        <textarea rows="1" cols="80" name="comment2"></textarea><br><br>
+
+        4.deficiency
+        <input type="hidden" name="candidate_word3" value="deficiency" />
+        <div id="phraseClass" style="margin-left: 3em;">
+          <table width="300" height="20" cellpadding="10">
+            <tbody><tr>
+              <td valign="middle"><input type="radio" name="annotation_result3" value="2" />sure</td>
+              <td valign="middle"><input type="radio" name="annotation_result3" value="1" />maybe</td>
+              <td valign="middle"><input type="radio" name="annotation_result3" value="0" />NG</td>
+            </tr></tbody>
+          </table>
+        </div>
+        <textarea rows="1" cols="80" name="comment3"></textarea><br><br>
+
+
+
+
+        <input id="submitButton" type="submit" name="Submit" value="Next">
+      </form>
+      <!--<iframe id="pageFrame" width="0%" height="0%"></iframe>-->
+
+      <script type="text/javascript">
+        //    alert(window.location.href);
+        document.getElementById('assignmentId').value = gup('assignmentId');
+        //alert(document.getElementById('assignmentId').value);
+
+        //
+        // Check if the worker is PREVIEWING the HIT or if they've ACCEPTED the HIT
+        //
+        if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE"){
+          // If we're previewing, disable the button and give it a helpful message
+          document.getElementById('submitButton').disabled = true;
+          document.getElementById('submitButton').value = "You must ACCEPT the HIT before you can submit the results.";
+        }
+        else {
+          var form = document.getElementById('mturk_form');
+          if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1)){
+            form.action = "http://workersandbox.mturk.com/mturk/externalSubmit";
+          }
+        }
+      </script>
+    </body>
+
+    <script type="text/javascript">
+      function formValidator(){
+        var valid = true;
+          if ((document.mturk_form.annotation_result0[0].checked == false) && (document.mturk_form.annotation_result0[1].checked == false) &&
+          (document.mturk_form.annotation_result0[2].checked == false )){
+            alert ( "Please annotate No.1" );
+            valid = false;
+            return valid;
+          }
+          if ((document.mturk_form.annotation_result1[0].checked == false ) && (document.mturk_form.annotation_result1[1].checked == false) &&
+          (document.mturk_form.annotation_result1[2].checked == false )){
+            alert ( "Please annotate No.2" );
+            valid = false;
+            return valid;
+          }
+          if ((document.mturk_form.annotation_result2[0].checked == false ) && (document.mturk_form.annotation_result2[1].checked == false) &&
+          (document.mturk_form.annotation_result2[2].checked == false )){
+            alert ( "Please annotate No.3" );
+            valid = false;
+            return valid;
+          }
+          if ((document.mturk_form.annotation_result3[0].checked == false) && (document.mturk_form.annotation_result3[1].checked == false) &&
+          (document.mturk_form.annotation_result3[2].checked == false)){
+            alert ( "Please annotate No.4" );
+            valid = false;
+            return valid;
+          }
+        return valid;
+      }
+    </script>
+
+  </html>
+
+{%endblock%}

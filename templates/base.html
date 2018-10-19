@@ -1,0 +1,30 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+
+  <title>{% block title %}My amazing site{% endblock %}</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+  <div class="site-header">
+    <div class="hidden_box">
+      <a href="{% url 'guideline' %}" data-lity style="text-decoration:none;">
+      <label for="label1">Guideline</label>
+      </a>
+    </div>
+  </div>
+
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>
