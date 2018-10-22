@@ -47,6 +47,11 @@ def guideline(request):
 def ful_text(request):
     context = {}
     annotation_name = 'ful_text.html'
+    original_text = request.POST.get('dir_name')
+    dir_name = request.GET.get('dir_name')
+    print(request)
+    print(original_text)
+    print(dir_name)
 
     return render(request, annotation_name, context)
 

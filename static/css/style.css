@@ -10,17 +10,63 @@
     width: 100%;
     text-align: center;
 }
+worker_id {
+    font-size: 20px;
+}
 
 body {
     font-family: Open Sans;
     font-size: 14px;
     line-height: 1.42857;
     background: white;
+    width: 1000px;
     height: 350px;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     style="background:white"
+
 }
+
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight:bold;
+    margin-top: 40px;
+}
+
+.paragraph{
+    margin-bottom: 20px;
+}
+
+.target{
+    color: red;
+}
+
+.url_color{
+    color: blue;
+}
+
+
+
+ul li, ol li {
+  line-height: 1.5; /*文の行高*/
+  padding: 0.5em 0; /*前後の文との余白*/
+}
+
+.narrowing{
+    line-height: 1.0;
+    padding: 0;
+    margin: -10px;
+}
+
+.narrow_display{
+    width: 800px;
+}
+
 .container-login {
     min-height: 0;
     width: 480px;
@@ -160,7 +206,7 @@ li a {
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 

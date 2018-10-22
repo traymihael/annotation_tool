@@ -14,10 +14,14 @@
 
 <body>
 
+  <div id="title_num">
+    {% block title_num %}{% endblock %}
+  </div>
+
   <div class="site-header">
     <div class="hidden_box">
       <a href="{% url 'guideline' %}" data-lity style="text-decoration:none;">
-      <label for="label1">Guideline</label>
+      <label for="label1" class="url_color">Guideline</label>
       </a>
     </div>
   </div>

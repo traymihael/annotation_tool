@@ -1,17 +1,4 @@
-{% load static %}
-
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  </head>
-
-  <body>
-    <h1>
+<h1>
       Notes
     </h1>
 
@@ -81,31 +68,3 @@
         If you close the browser on the way, please try again from the beginning.
       </li>
     </ul>
-
-
-    <div class="login-body">
-      <article class="container-login center-block">
-        <section>
-          <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
-            <div id="login-access" class="tab-pane fade active in">
-              <h2><i class="glyphicon glyphicon-log-in"></i> Start Annotation</h2>
-              <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'annotation_start'  %}" onSubmit='return check_name();'>
-                {% csrf_token %}
-                <div class="form-group ">
-                  <!--<label for="login_value" class="sr-only">Email</label>-->
-                  <input type="text" class="form-control" name="worker_id" id="login_value" placeholder="Worker ID" />
-                </div>
-                <br/>
-                <div class="form-group ">
-                  <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Start">
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-      </article>
-    </div>
-  </body>
-</html>
-
-
