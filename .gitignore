@@ -1,2 +1,3 @@
 polls/utils/
 db.sqlite3
+templates/cefr_ls/

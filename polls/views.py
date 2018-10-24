@@ -11,19 +11,25 @@ def index(request):
 
 def input_worker_id(request):
     context = {}
-    context['workse_list'] = user_management.get_workse_list()
+    # context['workse_list'] = user_management.get_workse_list()
     return render(request, 'input_worker_id.html', context)
 
 
 def annotation_start(request):
+    dir_name = 'cefr_ls'
     context = {}
     worker_id = request.POST.get('worker_id')
-    context['worker_id'] = worker_id
-
-    if user_management.check_use(worker_id):
-        annotation_name = 'test/annotation0.html'
-    else:
+    if worker_id == '':
         annotation_name = 'input_worker_id_error.html'
+    else:
+        context['worker_id'] = worker_id
+        context['file_num_display'] = 1
+
+        user_management.add_user(worker_id)
+        person_dir = user_management.get_person_dir(worker_id, dir_name)
+
+        context['all_num'] = add_annotation_data.get_page_data_start(dir_name, person_dir)
+        annotation_name = '{}/annotation{}/annotation0.html'.format(dir_name, person_dir)
 
     return render(request, annotation_name, context)
 
@@ -34,7 +40,10 @@ def submit_data(request):
     context['worker_id'] = worker_id
 
     add_annotation_data.add_data(request)
-    annotation_name = add_annotation_data.next_html(request)
+    annotation_name, context = add_annotation_data.next_html(request, context)
+
+    if annotation_name == 'finish.html':
+        context['fincode'] = user_management.get_fincode(worker_id)
 
     return render(request, annotation_name, context)
 

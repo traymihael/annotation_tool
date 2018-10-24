@@ -60,7 +60,7 @@ ul li, ol li {
 .narrowing{
     line-height: 1.0;
     padding: 0;
-    margin: -10px;
+    margin: 5px;
 }
 
 .narrow_display{
@@ -96,6 +96,45 @@ ul li, ol li {
     width: 1%;
     float: none;
 }
+
+.is-fixed {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: white;
+    box-shadow: 0 0 8px gray;
+}
+
+.is-fixed h2 {
+    margin-top: 0;
+}
+
+.is-fixed > div {
+    width: 1000px;
+    margin: 0 auto;
+    /*padding-bottom: 5px;*/
+
+}
+
+td label{
+    padding: 4px;
+}
+
+table{
+    width: 300px;
+    height: 20px;
+}
+
+table td {
+    padding: 10px;
+}
+
+.candidate_div {
+    margin-left: 3em;
+}
+
 .container-login .nav-tabs.nav-justified > li > a,
 .container-login .nav-tabs.nav-justified > li > a:hover,
 .container-login .nav-tabs.nav-justified > li > a:focus {
