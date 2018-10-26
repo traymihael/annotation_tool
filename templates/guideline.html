@@ -5,7 +5,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Guideline</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
   </head>
 
   <body class="narrow_display">
@@ -22,62 +27,71 @@
     </p>
 
     <h2>Guideline:</h2>
-    <div class="paragraph">
+    <p class="paragraph">
       We assume that the procedure of checking paraphrasability consists of three stages: grammatical reformation stage, definition stage, and context stage.
-    </div>
+    </p>
 
-    <div class="paragraph">
+    <p class="paragraph">
       Grammatical reformation is defined as addition or removal of words to maintain the coherence of the sentence.<br>
       Candidates that fail at this stage will be unable to complete the sentence without need for the sentence to be reformed, regardless of their semantic proximity to the target word.<br>
       <u>Note that the morphology of the target (third person singular, past tense etc.) is considered to be applied to the candidate automatically in the process of paraphrasing.</u>
-    </div>
+    </p>
 
-    <div class="paragraph">
+    <p class="paragraph">
       The following cases serve as an example:
-    </div>
-    <div class="paragraph">
+    </p>
+    <p class="paragraph">
       (1) Chemical engineering, materials science, and nanotechnology combine chemical principles and empirical findings to produce useful substances, <span class="target">ranging</span> from gasoline to fabrics to electronic.
-    </div>
+    </p>
 
-    <div class="paragraph">
+    <p class="paragraph">
       Target: <span class="target">range</span><br>
       Candidate: cover
-    </div>
+    </p>
 
-    <div class="paragraph">
+    <p class="paragraph">
       In this sentence, the verb "range" is the target to be paraphrased.<br>
       The candidate "cover" does not fit due to the need to remove the preposition "from" to make the sentence grammatically correct.
-    </div>
+    </p>
 
-    <div class="paragraph">
+    <p class="paragraph">
       (2) This civic engagement ensures that representative democracy will continue to flourish and that people will continue to <span class="target">influence</span> government.
-    </div>
-    <div class="paragraph">
+    </p>
+    <p class="paragraph">
       Target: <span class="target">influence</span><br>
       Candidates: determine, impress, change
-    </div>
-    <div class="paragraph">
+    </p>
+    <p class="paragraph">
       In (2), where the target is the verb "influence", "determine" passes the grammatical reformation stage but fails at the definition stage because it does not cover the semantics of "influence" in the meaning of affecting the way someone thinks or behaves, though it might do so in another context where determination causes a change in someone`s way of thinking.
       On the other hand, the word "impress" passes this stage because it can be used to mean to affect the way someone believes.
       However, it does not pass the context stage because "impressing government" is not synonymous to "influencing government" in this context.
-    </div>
+    </p>
 
     <h2>Comment:</h2>
-    <div class="paragraph">
-      If you have any comments or suggestions, please fill in the input box after the radio button (e.g. "This word is too informal in this context.", "'Influential" instead of "influence" would be fine.").
-    </div>
+    <p class="paragraph">
+      If you have any comments or suggestions, please fill in the input box after the radio button as shown below (e.g. "This word is too informal in this context.", "'Influential" instead of "influence" would be fine.").
+      <textarea rows="1" cols="80" value="comment"></textarea>
+    </p>
 
     <h2 class="target">
       Attention:
     </h2>
     <ul>
       <li>
-        We intentionally included some options that are obviously true (or false) to ensure the quality of the survey. Those who get these items wrong would not be accepted. Also, please note that participants whose answers are mechanical will be rejected.
+        We intentionally included some options that are obviously true (or false) to ensure the quality of the survey. Those who get these items wrong would not be accepted. Also, please note that participants whose answers are mechanical will be <span class="target">rejected</span>.
       </li>
       <li>
         Temporary storage is not available.
-        If you close the browser on the way, please try again from the beginning.
+        If you close the browser on the way, please try again from the beginning inputting <span class="target">same nickname</span>.
+      </li>
+      <li>
+        The code will be issued after the task is over. The task will be terminated by entering the code in the corresponding part of AMT.
       </li>
     </ul>
+
+  <div id="guideline">
+    {% block content %}{% endblock %}
+  </div>
+
   </body>
 </html>

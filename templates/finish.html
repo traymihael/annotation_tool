@@ -1,13 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body style="background:white">
-<p>FINISH</p>
-Thank you for annotation.<br>
-Please input below ID into AMT to finish this task.<br>
-<p><b>{{ fincode }}</b></p>
-</body>
+{% load static %}
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Finish</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  </head>
+
+  <body>
+    <h1>FINISH</h1>
+    <p class="finish_state">
+      Thank you for annotation.
+      Please input below ID into AMT to finish this task.<br>
+      Please do not close the browser until you finish inputting the code.
+    </p>
+    <p class="finish_state">
+      Your nickname is <span class="code">{{worker_id}}</span><br>
+      Your finish code is <span class="code">{{ fincode }}</span>
+    </p>
+  </body>
 </html>

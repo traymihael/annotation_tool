@@ -135,6 +135,17 @@ table td {
     margin-left: 3em;
 }
 
+.finish_state {
+    font-size: 20px;
+    /*text-align: center;*/
+    padding: 10px;
+}
+
+.code{
+    color: red;
+    font-size: 45px;
+}
+
 .container-login .nav-tabs.nav-justified > li > a,
 .container-login .nav-tabs.nav-justified > li > a:hover,
 .container-login .nav-tabs.nav-justified > li > a:focus {
@@ -246,6 +257,10 @@ li a {
 a {
     text-decoration: none;
     color: black;
+}
+
+tbody td label {
+    font-weight: normal;
 }
 
 

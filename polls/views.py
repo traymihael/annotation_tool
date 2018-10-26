@@ -31,10 +31,13 @@ def annotation_start(request):
         context['all_num'] = add_annotation_data.get_page_data_start(dir_name, person_dir)
         annotation_name = '{}/annotation{}/annotation0.html'.format(dir_name, person_dir)
 
+        print(annotation_name)
+    # print(person_dir)
+
     return render(request, annotation_name, context)
 
 
-def submit_data(request):
+def annotation(request):
     context = {}
     worker_id = request.POST.get('worker_id')
     context['worker_id'] = worker_id
@@ -42,8 +45,7 @@ def submit_data(request):
     add_annotation_data.add_data(request)
     annotation_name, context = add_annotation_data.next_html(request, context)
 
-    if annotation_name == 'finish.html':
-        context['fincode'] = user_management.get_fincode(worker_id)
+    print(annotation_name)
 
     return render(request, annotation_name, context)
 
@@ -61,6 +63,20 @@ def ful_text(request):
     print(request)
     print(original_text)
     print(dir_name)
+
+    return render(request, annotation_name, context)
+
+def annotation_finish(request):
+    context = {}
+    annotation_name = 'finish.html'
+    # print(annotation_name)
+    check_flg = add_annotation_data.check_ans(request)
+    worker_id = request.POST.get('worker_id')
+    context['worker_id'] = worker_id
+    if check_flg:
+        context['fincode'] = user_management.get_fincode(worker_id)
+    else:
+        context['fincode'] = user_management.get_dummycode()
 
     return render(request, annotation_name, context)
 
