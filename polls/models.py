@@ -38,9 +38,13 @@ class Annotation(models.Model):
 
 class PersonDirectory(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    come_num = models.IntegerField()
+    dir_num = models.IntegerField()
 
 class FinishCode(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     code = models.CharField(max_length=30)
+
+class HaswellAns(models.Model):
+    target_data = models.ForeignKey(TargetData, on_delete=models.CASCADE)
+    gold_result = models.IntegerField()
 

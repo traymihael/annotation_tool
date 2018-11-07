@@ -1,0 +1,277 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
+
+.site-header{
+    background: white;
+    display: block;
+    padding: 10px 20px;
+    /*position: fixed;*/
+    margin: 0 auto;
+    /*justify-content: space-between;*/
+    width: 100%;
+    text-align: center;
+}
+worker_id {
+    font-size: 20px;
+}
+
+body {
+    font-family: Open Sans;
+    font-size: 14px;
+    line-height: 1.42857;
+    background: white;
+    width: 1000px;
+    height: 350px;
+    padding: 0;
+    margin: 0 auto;
+    style="background:white"
+
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight:bold;
+    margin-top: 40px;
+}
+
+.paragraph{
+    margin-bottom: 20px;
+}
+
+.target{
+    color: red;
+}
+
+.url_color{
+    color: blue;
+}
+
+
+
+ul li, ol li {
+  line-height: 1.5; /*文の行高*/
+  padding: 0.5em 0; /*前後の文との余白*/
+}
+
+.narrowing{
+    line-height: 1.0;
+    padding: 0;
+    margin: 5px;
+}
+
+.narrow_display{
+    width: 800px;
+}
+
+.container-login {
+    min-height: 0;
+    width: 480px;
+    color: #333333;
+    margin-top: 40px;
+    padding: 0;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-login > section {
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 10px;
+}
+#top-bar {
+    display: inherit;
+}
+.nav-tabs.nav-justified {
+    border-bottom: 0 none;
+    width: 100%;
+}
+.nav-tabs.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+}
+
+.is-fixed {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: white;
+    box-shadow: 0 0 8px gray;
+}
+
+.is-fixed h2 {
+    margin-top: 0;
+}
+
+.is-fixed > div {
+    width: 1000px;
+    margin: 0 auto;
+    /*padding-bottom: 5px;*/
+
+}
+
+td label{
+    padding: 4px;
+}
+
+table{
+    width: 300px;
+    height: 20px;
+}
+
+table td {
+    padding: 10px;
+}
+
+.candidate_div {
+    margin-left: 3em;
+}
+
+.finish_state {
+    font-size: 20px;
+    /*text-align: center;*/
+    padding: 10px;
+}
+
+.code{
+    color: red;
+    font-size: 45px;
+}
+
+.container-login .nav-tabs.nav-justified > li > a,
+.container-login .nav-tabs.nav-justified > li > a:hover,
+.container-login .nav-tabs.nav-justified > li > a:focus {
+    background: #ea533f;
+    border: medium none;
+    color: #ffffff;
+    margin-bottom: 0;
+    margin-right: 0;
+    border-radius: 0;
+}
+.container-login .nav-tabs.nav-justified > .active > a,
+.container-login .nav-tabs.nav-justified > .active > a:hover,
+.container-login .nav-tabs.nav-justified > .active > a:focus {
+    background: #ffffff;
+    color: #333333;
+}
+.container-login .nav-tabs.nav-justified > li > a:hover,
+.container-login .nav-tabs.nav-justified > li > a:focus {
+    background: #de2f18;
+}
+.tabs-login {
+    background: #ffffff;
+    border: medium none;
+    margin-top: -1px;
+    padding: 10px 30px;
+}
+.container-login h2 {
+    color: #ea533f;
+}
+.form-control {
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #999999;
+    border-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #333333;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.container-login .checkbox {
+    margin-top: -15px;
+}
+.container-login button {
+    background-color: #ea533f;
+    border-color: #e73e28;
+    color: #ffffff;
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
+    width: 100%;
+}
+.container-login button:hover,
+.container-login button:focus {
+    background: #de2f18;
+    border-color: #be2815;
+}
+
+li a {
+    color: green;
+}
+
+/*全体*/
+.hidden_box {
+    margin: 2em auto;/*前後の余白*/
+    padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #be2815;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+tbody td label {
+    font-weight: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

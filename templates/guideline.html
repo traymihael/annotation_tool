@@ -9,8 +9,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.css' />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lity/1.6.6/lity.js'></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
+    <script src="{% static 'polls/js/script.js' %}"></script>
   </head>
 
   <body class="narrow_display">
@@ -33,7 +33,7 @@
 
     <p class="paragraph">
       Grammatical reformation is defined as addition or removal of words to maintain the coherence of the sentence.<br>
-      Candidates that fail at this stage will be unable to complete the sentence without need for the sentence to be reformed, regardless of their semantic proximity to the target word.<br>
+      Candidates that fail at this stage will be unable to complete the sentence without the need for the sentence to be reformed, regardless of their semantic proximity to the target word.<br>
       <u>Note that the morphology of the target (third person singular, past tense etc.) is considered to be applied to the candidate automatically in the process of paraphrasing.</u>
     </p>
 
@@ -78,16 +78,20 @@
     </h2>
     <ul>
       <li>
-        We intentionally included some options that are obviously true (or false) to ensure the quality of the survey. Those who get these items wrong would not be accepted. Also, please note that participants whose answers are mechanical will be <span class="target">rejected</span>.
+        We intentionally included some options that are obviously true (or false) to ensure the quality of the survey. The work of those who get these items wrong would not be accepted. Also, please note that participants whose answers are mechanical will be <span class="target">rejected</span>.
       </li>
       <li>
-        Temporary storage is not available.
-        If you close the browser on the way, please try again from the beginning inputting <span class="target">same nickname</span>.
+        Temporary storage of responses is not available.
+        If you close the browser before completion, please try again from the beginning inputting the <span class="target">same Worker ID</span> used during the previous.
       </li>
       <li>
         The code will be issued after the task is over. The task will be terminated by entering the code in the corresponding part of AMT.
       </li>
+      <li>
+        Contatct Information : kyudai.uchida.lab [at] gmail.com
+      </li>
     </ul>
+
 
   <div id="guideline">
     {% block content %}{% endblock %}
