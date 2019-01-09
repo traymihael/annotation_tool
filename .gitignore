@@ -5,4 +5,6 @@ polls/utils/__pycache__/
 polls/__pycache__/
 polls/migrations/
 mysite/__pycache__/
+mysite/__init__.py
+polls/__init__.py
 polls/utils/worker_id.txt
