@@ -22,18 +22,19 @@ def annotation_start(request):
     if worker_id == '':
         annotation_name = 'input_worker_id_error.html'
     else:
-        user_management.add_user(worker_id)
-        person_dir = user_management.get_person_dir(worker_id, dir_name)
         context['worker_id'] = worker_id
         context['file_num_display'] = 1
 
+        user_management.add_user(worker_id)
+        person_dir = user_management.get_person_dir(worker_id, dir_name)
 
+        if person_dir == -1:
+            annotation_name = 'error_full.html'.format(dir_name)
+        else:
+            context['all_num'] = add_annotation_data.get_page_data_start(dir_name, person_dir)
+            annotation_name = '{}/annotation{}/annotation0.html'.format(dir_name, person_dir)
 
-
-        context['all_num'] = add_annotation_data.get_page_data_start(dir_name, person_dir)
-        annotation_name = '{}/annotation{}/annotation0.html'.format(dir_name, person_dir)
-
-        print(annotation_name)
+        # print(annotation_name)
     # print(person_dir)
 
     return render(request, annotation_name, context)

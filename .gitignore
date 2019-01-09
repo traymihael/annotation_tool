@@ -2,3 +2,6 @@ db.sqlite3
 templates/cefr_ls/
 templates/check_q/
 polls/utils/__pycache__/
+polls/__pycache__/
+polls/migrations/__pycache__/
+mysite/__pycache__/
