@@ -3,6 +3,6 @@ templates/cefr_ls/
 templates/check_q/
 polls/utils/__pycache__/
 polls/__pycache__/
-polls/migrations/__pycache__/
+polls/migrations/
 mysite/__pycache__/
 polls/utils/worker_id.txt
