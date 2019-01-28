@@ -16,6 +16,10 @@ class Person(models.Model):
 class Directory(models.Model):
     dir_name = models.CharField(max_length=20)
 
+class DirNum(models.Model):
+    dir_name = models.ForeignKey(Directory, on_delete=models.CASCADE)
+    dir_num = models.IntegerField()
+
 class TargetIndex(models.Model):
     text = models.ForeignKey(Text, on_delete=models.CASCADE)
     target = models.ForeignKey(Vocabulary, on_delete=models.CASCADE)
@@ -38,7 +42,7 @@ class Annotation(models.Model):
 
 class PersonDirectory(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    dir_num = models.IntegerField()
+    dir_num = models.ForeignKey(DirNum, on_delete=models.CASCADE)
 
 class FinishCode(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
@@ -48,3 +52,6 @@ class HaswellAns(models.Model):
     target_data = models.ForeignKey(TargetData, on_delete=models.CASCADE)
     gold_result = models.IntegerField()
 
+class DirFinFlg(models.Model):
+    dir_num = models.ForeignKey(DirNum, on_delete=models.CASCADE)
+    fin_flg = models.IntegerField(default=0)

@@ -16,7 +16,7 @@ def input_worker_id(request):
 
 
 def annotation_start(request):
-    dir_name = 'cefr_ls'
+    dir_name = 'cefr_lp_v2'
     context = {}
     worker_id = request.POST.get('worker_id')
     if worker_id == '':

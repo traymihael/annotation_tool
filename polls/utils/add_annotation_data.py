@@ -22,7 +22,7 @@ def add_data(request):
     target_index = get_object_or_404(TargetIndex, text=text, target=target, index_num=index)
     dir_name = get_object_or_404(Directory, dir_name=dir_name)
 
-    print(candidate_len, person)
+    # print(candidate_len, person)
 
 
     for i in range(int(candidate_len)):

@@ -1,5 +1,7 @@
 db.sqlite3
 templates/cefr_ls/
+templates/cefr_lp_v2/
+templates/cefr_ls.zip
 templates/check_q/
 polls/utils/__pycache__/
 polls/__pycache__/
