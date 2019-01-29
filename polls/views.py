@@ -3,7 +3,6 @@ from django.http import HttpResponse
 # from rest_framework.views import APIView
 from polls.models import *
 from django.utils import timezone
-
 from polls.utils import add_annotation_data, user_management
 
 def index(request):
@@ -32,6 +31,8 @@ def annotation_start(request):
             annotation_name = 'error_full.html'
         elif person_dir == -2:
             annotation_name = 'person_full.html'
+        elif person_dir == -3:
+            annotation_name = 'pre_fin_person.html'
         else:
             context['all_num'] = add_annotation_data.get_page_data_start(dir_name, person_dir)
             annotation_name = '{}/annotation{}/annotation0.html'.format(dir_name, person_dir)
@@ -48,6 +49,9 @@ def annotation(request):
     annotation_name, context = add_annotation_data.next_html(request, context)
 
     context['fincode'] = user_management.get_fincode(worker_id)
+
+    if annotation_name == 'finish.html':
+        user_management.finish_process(request)
 
     return render(request, annotation_name, context)
 
@@ -79,6 +83,7 @@ def annotation_finish(request):
         context['fincode'] = user_management.get_fincode(worker_id)
     else:
         context['fincode'] = user_management.get_dummycode(penalty)
+
 
     return render(request, annotation_name, context)
 

@@ -92,6 +92,11 @@ def get_personn_dir_num(dir_count, worker_id, dir_name):
 
     return dir_num
 
+def pre_fin_person(person):
+    q = PersonDirectory.objects.get(person=person)
+    fin_flg = q.finish_flg
+    return fin_flg
+
 def get_person_dir(worker_id, dir_name):
     # print("./templates/{}/".format(dir_name))
     path, dirs, files = next(os.walk("./templates/{}/".format(dir_name)))
@@ -106,15 +111,17 @@ def get_person_dir(worker_id, dir_name):
         dir_name_data = get_object_or_404(Directory, dir_name=dir_name)
         dir_num_data = get_object_or_404(DirNum, dir_name=dir_name_data, dir_num=dir_num)
 
-        q = PersonDirectory(person=person, dir_num=dir_num_data)
+        q = PersonDirectory(person=person, dir_num=dir_num_data, finish_flg=0)
         q.save()
         q = FinishCode(person=person, code=fincode)
         q.save()
     else:
-        q = PersonDirectory.objects.get(person=person)
-        dir_num_data = q.dir_num
-        dir_num = dir_num_data.dir_num
-
+        if pre_fin_person(person):
+            dir_num = -3
+        else:
+            q = PersonDirectory.objects.get(person=person)
+            dir_num_data = q.dir_num
+            dir_num = dir_num_data.dir_num
     return dir_num
 
 
@@ -132,3 +139,24 @@ def get_fincode(worker_id):
     q = FinishCode.objects.get(person=person)
     fincode = q.code
     return fincode
+
+def finish_process(request):
+    person_name = request.POST.get('worker_id')
+    dir_name = request.POST.get('dir_name').split('/')[0]
+    dir_num = request.POST.get('dir_name').split('/')[1].replace('annotation', '')
+
+    person_db = get_object_or_404(Person, person=person_name)
+    dir_name_db = get_object_or_404(Directory, dir_name=dir_name)
+    dir_num_db = get_object_or_404(DirNum, dir_name=dir_name_db, dir_num=dir_num)
+
+
+    q = PersonDirectory.objects.get(person=person_db, dir_num=dir_num_db)
+    q.finish_flg = 1
+    q.save()
+
+    finish_person_num = PersonDirectory.objects.filter(dir_num=dir_num_db, finish_flg=1).count()
+    if finish_person_num >= 5:
+        q = DirFinFlg.objects.get(dir_num=dir_num_db)
+        q.fin_flg=1
+        q.save()
+

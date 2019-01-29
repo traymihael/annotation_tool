@@ -43,6 +43,7 @@ class Annotation(models.Model):
 class PersonDirectory(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     dir_num = models.ForeignKey(DirNum, on_delete=models.CASCADE)
+    finish_flg = models.IntegerField(default=0)
 
 class FinishCode(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
