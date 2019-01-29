@@ -4,6 +4,9 @@ import os
 from django.shortcuts import render, get_object_or_404
 import random, string
 
+finish_number_num = 1000
+now_number_num = 0
+
 def check_use(user_name):
     text_name = 'polls/utils/worker_id.txt'
     with open(text_name, 'r', encoding='utf8', errors='ignore') as f:
@@ -56,21 +59,37 @@ def check_data_full(dir_name, i):
     return flg
 
 def get_personn_dir_num(dir_count, worker_id, dir_name):
+    global finish_number_num, now_number_num
+
     dir_num = 0
     dir_name_data = get_object_or_404(Directory, dir_name=dir_name)
     dir_num_data = get_object_or_404(DirNum, dir_name=dir_name_data, dir_num=0)
     count_person = PersonDirectory.objects.filter(dir_num=dir_num_data).count()
+
+    if count_person < 5 and check_data_num(worker_id, dir_num):
+        check_flg = 0
+    else:
+        check_flg = 1
+        count_person = 5
+
     for i in range(dir_count):
         if check_data_full(dir_name, i):
             continue
         dir_num_data = get_object_or_404(DirNum, dir_name=dir_name_data, dir_num=i)
         count_person_i = PersonDirectory.objects.filter(dir_num=dir_num_data).count()
-        print(check_data_num(worker_id, i))
         if count_person_i < count_person and check_data_num(worker_id, i):
             count_person = count_person_i
             dir_num = i
-        # if PersonDirectory.objects.filter(dir_num=i).count() >= 15:
-        #     dir_num = -1
+            check_flg = 0
+
+    if check_flg == 0:
+        now_number_num += 1
+
+    if now_number_num > finish_number_num:
+        dir_num = -1
+    elif check_flg:
+        dir_num = -2
+
     return dir_num
 
 def get_person_dir(worker_id, dir_name):
@@ -84,7 +103,6 @@ def get_person_dir(worker_id, dir_name):
 
     if PersonDirectory.objects.filter(person=person).count() == 0:
         dir_num = get_personn_dir_num(dir_count, worker_id, dir_name)
-
         dir_name_data = get_object_or_404(Directory, dir_name=dir_name)
         dir_num_data = get_object_or_404(DirNum, dir_name=dir_name_data, dir_num=dir_num)
 
@@ -96,8 +114,6 @@ def get_person_dir(worker_id, dir_name):
         q = PersonDirectory.objects.get(person=person)
         dir_num_data = q.dir_num
         dir_num = dir_num_data.dir_num
-
-    # person_dir = come_num % dir_count
 
     return dir_num
 

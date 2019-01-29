@@ -29,13 +29,12 @@ def annotation_start(request):
         person_dir = user_management.get_person_dir(worker_id, dir_name)
 
         if person_dir == -1:
-            annotation_name = 'error_full.html'.format(dir_name)
+            annotation_name = 'error_full.html'
+        elif person_dir == -2:
+            annotation_name = 'person_full.html'
         else:
             context['all_num'] = add_annotation_data.get_page_data_start(dir_name, person_dir)
             annotation_name = '{}/annotation{}/annotation0.html'.format(dir_name, person_dir)
-
-        # print(annotation_name)
-    # print(person_dir)
 
     return render(request, annotation_name, context)
 

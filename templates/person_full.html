@@ -1,0 +1,25 @@
+{% load static %}
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
+  </head>
+
+  <body>
+    <h1>ERROR</h1>
+    <p class="finish_state">
+      Sorry. You are annotating all the datasets currently prepared. Please wait for a while until new datasets are added. Thank you for your interest.
+    </p>
+    <form method="POST" action="{% url 'input_worker_id'  %}">
+      {% csrf_token %}
+      <div class="form-group ">
+        <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Back">
+      </div>
+    </form>
+  </body>
+</html>
