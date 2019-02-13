@@ -3,7 +3,7 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>DB process</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -11,15 +11,18 @@
   </head>
 
   <body>
-    <h1>ERROR</h1>
-    <p class="finish_state">
-      Please input your Worker ID of MTurk.
-    </p>
-    <form method="POST" action="{% url 'input_worker_id'  %}">
-      {% csrf_token %}
-      <div class="form-group ">
-        <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Back">
-      </div>
-    </form>
+    <h1>DB process finish</h1>
+  <p class="finish_state">
+    delete_num = {{ delete_num }}
+  </p>
+  <p class="finish_state">
+    finish_num = {{ finish_num }}
+  </p>
+  <p class="finish_state">
+    pre limit_num = {{ pre_limit_num }}
+  </p>
+  <p class="finish_state">
+    now limit_num = {{ limit_num }}
+  </p>
   </body>
 </html>

@@ -1,4 +1,3 @@
-{% extends 'guideline.html' %}
 {% load static %}
 
 <html lang="ja">
@@ -11,28 +10,46 @@
     <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
   </head>
 
+  <body class="narrow_display">
 
-{% block content %}
-  <div class="login-body">
-    <article class="container-login center-block">
-      <section>
-        <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
-          <div id="login-access" class="tab-pane fade active in">
-            <h2><i class="glyphicon glyphicon-log-in"></i> Start Annotation</h2>
-            <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'annotation_start'  %}" onSubmit='return check_name();'>
-              {% csrf_token %}
-              <div class="form-group ">
-                <!--<label for="login_value" class="sr-only">Email</label>-->
-                <input type="text" class="form-control" name="worker_id" id="login_value" placeholder="Please enter your Worker ID of MTurk" />
-              </div>
-              <br/>
-              <div class="form-group ">
-                <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Start">
-              </div>
-            </form>
+    <h2>
+      Attention: ({{ remain_num }} hits are available)
+    </h2>
+    <ul>
+      <li>
+        If you are a <span class="target">repeater</span>, <u>please add a counting number after your Worker ID</u>. (e.g. <span class="target">XXXXXXXX-2, XXXXXXXX-3</span>)<br>
+        If you input the same ID as before, you will get the same items with your previous answers and <span class="target">you will not be approved even if you obtain a new finish code.</span>
+      </li>
+      <li>
+        There might be disparity between the MTurk page and this web page about the number of hits available. This is because we count up when people begin their process. Since we have some people who quit before submitting their results, the number on the Mturk page tends to be larger. We try our best to minimize the difference. If you see the message that says "the limit is reached" and you are still interested in, please come back later.
+      </li>
+      <li>
+        Contatct Information : kyudai.uchida.lab [at] gmail.com
+      </li>
+    </ul>
+
+    <div class="login-body">
+      <article class="container-login center-block">
+        <section>
+          <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+            <div id="login-access" class="tab-pane fade active in">
+              <h2><i class="glyphicon glyphicon-log-in"></i> Start Annotation</h2>
+              <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'view_guideline'  %}" onSubmit='return check_name();'>
+                {% csrf_token %}
+                <div class="form-group ">
+                  <!--<label for="login_value" class="sr-only">Email</label>-->
+                  <input type="text" class="form-control" name="worker_id" id="login_value" placeholder="Please enter your Worker ID of MTurk" />
+                </div>
+                <br/>
+                <div class="form-group ">
+                  <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Start">
+                </div>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
-    </article>
-  </div>
-{% endblock %}
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
+

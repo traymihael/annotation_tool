@@ -10,4 +10,8 @@ urlpatterns = [
     url(r'^guideline/', views.guideline, name='guideline'),
     url(r'^ful_text/', views.ful_text, name='ful_text'),
     url(r'^annotation_finish/', views.annotation_finish, name='annotation_finish'),
+    url(r'^view_guideline/', views.view_guideline, name='view_guideline'),
+    url(r'^delete_extra_person/', views.delete_extra_person, name='delete_extra_person'),
+    url(r'^change_limit_num/', views.change_limit_num, name='change_limit_num'),
+    url(r'^process_change_limit/', views.process_change_limit, name='process_change_limit'),
 ]

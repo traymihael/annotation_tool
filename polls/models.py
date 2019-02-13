@@ -2,7 +2,8 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-
+class LimitNum(models.Model):
+    limit_num = models.IntegerField()
 
 class Text(models.Model):
     text = models.CharField(max_length=300)

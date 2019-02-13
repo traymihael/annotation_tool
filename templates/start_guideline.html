@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+{% extends 'guideline.html' %}
+{% load static %}
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}">
+  </head>
+
+
+  {% block content %}
+
+  <worker_id>
+    Your Woker ID is <span class="target">{{ worker_id }}</span>
+  </worker_id>
+
+  <div class="login-body">
+    <article class="container-login center-block">
+      <section>
+        <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+          <div id="login-access" class="tab-pane fade active in">
+            <form id="mturk_form" name="mturk_form" method="POST" action="{% url 'annotation_start'  %}" onSubmit='return check_name();'>
+              {% csrf_token %}
+              <input type="hidden" name="worker_id" value={{ worker_id }} />
+              <div class="form-group ">
+                <input type="submit" name="log-me-in" id="submitButton" tabindex="5" class="btn btn-lg btn-primary" value="Start Annotation">
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+{% endblock %}
+
+</body>
+</html>

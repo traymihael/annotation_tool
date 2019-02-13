@@ -4,8 +4,38 @@ import os
 from django.shortcuts import render, get_object_or_404
 import random, string
 
-finish_number_num = 1000
-now_number_num = 0
+def get_db_person_inf():
+    all_person = get_db_person_num()
+    finish_person = PersonDirectory.objects.filter(finish_flg=1).count()
+    challenging_person = PersonDirectory.objects.filter(finish_flg=0).count()
+    return all_person, finish_person, challenging_person
+
+def change_limit_num(finish_num):
+    q = LimitNum.objects.get()
+    q.limit_num = finish_num
+    q.save()
+
+def get_db_limit_num():
+    limit_num = LimitNum.objects.get().limit_num
+    return limit_num
+
+def get_remain_num():
+    limit_num = get_db_limit_num()
+    now_num = Person.objects.count()
+    remain_num = limit_num - now_num
+    return remain_num
+
+def get_db_person_num():
+    person_num = Person.objects.count()
+    return person_num
+
+def get_start_dir_num(worker_id):
+    person = get_object_or_404(Person, person=worker_id)
+    q = PersonDirectory.objects.get(person=person)
+    dir_num_data = q.dir_num
+    dir_num = dir_num_data.dir_num
+    return dir_num
+
 
 def check_use(user_name):
     text_name = 'polls/utils/worker_id.txt'
@@ -59,7 +89,8 @@ def check_data_full(dir_name, i):
     return flg
 
 def get_personn_dir_num(dir_count, worker_id, dir_name):
-    global finish_number_num, now_number_num
+    finish_number_num = get_object_or_404(LimitNum).limit_num
+    now_number_num = Person.objects.count()
 
     dir_num = 0
     dir_name_data = get_object_or_404(Directory, dir_name=dir_name)
@@ -82,9 +113,6 @@ def get_personn_dir_num(dir_count, worker_id, dir_name):
             dir_num = i
             check_flg = 0
 
-    if check_flg == 0:
-        now_number_num += 1
-
     if now_number_num > finish_number_num:
         dir_num = -1
     elif check_flg:
@@ -98,7 +126,6 @@ def pre_fin_person(person):
     return fin_flg
 
 def get_person_dir(worker_id, dir_name):
-    # print("./templates/{}/".format(dir_name))
     path, dirs, files = next(os.walk("./templates/{}/".format(dir_name)))
     dir_count = len(dirs)
 
